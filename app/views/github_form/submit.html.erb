@@ -1,0 +1,16 @@
+<h1>GitHub User Information</h1>
+
+<% if @error_message %>
+  <p class="error"><%= @error_message %></p>
+<% elsif @github_user %>
+  <h2>GitHub User:</h2>
+  <p>Name: <%= @github_user['name'] %></p>
+  <h3>Repos:</h3>
+  <ul>
+    <% @github_user['repos'].each do |repo| %>
+      <li><%= repo %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Back', root_path %>

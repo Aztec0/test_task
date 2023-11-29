@@ -1,0 +1,23 @@
+<!-- app/views/github_form/index.html.erb -->
+
+<h1>GitHub GraphQL App</h1>
+
+<%= form_with(url: '/github_form/submit', method: 'get') do |form| %>
+  <%= form.label :github_login, 'GitHub Login:' %>
+  <%= form.text_field :github_login %>
+
+  <%= form.submit 'Submit' %>
+<% end %>
+
+<% if @error_message %>
+  <p class="error"><%= @error_message %></p>
+<% elsif @github_user %>
+  <h2>GitHub User:</h2>
+  <p>Name: <%= @github_user['name'] %></p>
+  <h3>Repos:</h3>
+  <ul>
+    <% @github_user['repos'].each do |repo| %>
+      <li><%= repo %></li>
+    <% end %>
+  </ul>
+<% end %>
